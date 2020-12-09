@@ -18,7 +18,16 @@ def first_invalid(data:List[int], pream_length:int=25) -> int:
         if result==False:
             return data[pream_length+i]
 
-
+def find_contiguous(data:List[int]) -> int:
+    terminal_value = first_invalid(data)
+    terminal_ix = data.index(terminal_value)
+    contig = {sum(data[i:i+n]):data[i:i+n] for n in range(1,terminal_ix) for i in range(terminal_ix)}
+    return min(contig[terminal_value]) + max(contig[terminal_value])
 
 # Solution pt. 1
 first_invalid(data)
+
+# Solution pt. 2
+find_contiguous(data)
+
+
